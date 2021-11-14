@@ -26,6 +26,7 @@
 
 import os
 import subprocess
+import re
 from typing import List  # noqa: F401
 from libqtile import qtile
 from libqtile import hook
@@ -58,6 +59,12 @@ def dbus_register():
                       'org.gnome.SessionManager.RegisterClient',
                       'string:qtile',
                       'string:' + id])
+
+
+screen1_groups = ["WWW", "DEV", "SYS", "DOC", "VMM", "GAME", "ARDOUR"]
+screen2_groups = ["WWW", "DEV", "SYS", "DOC", "VMM", "STEAM", "ARDOUR2"]
+all_groups = ["WWW", "DEV", "SYS", "DOC",
+              "VMM", "GAME", "STEAM", "ARDOUR", "ARDOUR2"]
 
 
 keys = [
@@ -171,14 +178,38 @@ keys = [
 
 
 def init_group_names():
-    return [("WWW", {'layout': 'monadtall'}),
-            ("DEV", {'layout': 'monadtall'}),
-            ("SYS", {'layout': 'monadtall'}),
-            ("DOC", {'layout': 'monadtall'}),
-            ("VMM", {'layout': 'max'}),
-            ("MUS", {'layout': 'monadtall'}),
-            ("GAME", {'layout': 'max'}),
-            ("STEAM", {'layout': 'floating'})]
+    return [
+        ("WWW", {
+            'layout': 'monadtall',
+            'matches': [Match(wm_class=("Navigator", "firefox"))]
+        }),
+        ("DEV", {'layout': 'monadtall'}),
+        ("SYS", {'layout': 'monadtall'}),
+        ("DOC", {'layout': 'monadtall'}),
+        ("VMM", {'layout': 'max'}),
+        ("GAME", {
+            'layout': 'max',
+            'matches': [Match(wm_class=("csgo_linux64", "csgo_linux64"))]
+        }),
+        ("STEAM", {
+            'layout': 'monadtall',
+            'layouts': [layout.MonadTall(ratio=0.8)],
+            'matches': [Match(wm_class=("Steam", "Steam"))],
+            'screen_affinity': 2
+        }),
+        ("ARDOUR", {
+            'layout': 'max',
+            'matches': [
+                Match(title=re.compile("(?<!Mixer - )Ardour$")),
+            ],
+        }),
+        ("ARDOUR2", {
+            'layout': 'max',
+            'matches': [
+                Match(title=re.compile("(?<=Mixer - )Ardour$")),
+            ],
+        })
+    ]
 
 
 def init_groups():
@@ -189,11 +220,29 @@ if __name__ in ["config", "__main__"]:
     group_names = init_group_names()
     groups = init_groups()
 
+# for j, names in enumerate([screen1_groups, screen2_groups]):
+#     keys.extend(Key([mod], i, lazy.to_screen(
+#         j), lazy.group[i].toscreen()) for i in names)
+
+
 for i, (name, kwargs) in enumerate(group_names, 1):
-    keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+    if name in screen1_groups and name not in screen2_groups:
+        keys.append(Key([mod], str(i), lazy.to_screen(0),
+                    lazy.group[name].toscreen(toggle=False)))
+    elif name in screen2_groups and name not in screen1_groups:
+        keys.append(Key([mod], str(i), lazy.to_screen(1),
+                    lazy.group[name].toscreen(toggle=False)))
+    else:
+        keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+
+for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
-#groups = [Group(i) for i in "123456789"]
+# for i, (name, kwargs) in enumerate(group_names, 1):
+#     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
+#     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+
+# groups = [Group(i) for i in "123456789"]
 
 # for i in groups:
 #    keys.extend([
@@ -215,7 +264,6 @@ layout_theme = {"border_width": 2,
                 "border_focus": "e1acff",
                 "border_normal": "1D2330"
                 }
-
 
 layouts = [
     layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=4),
@@ -280,7 +328,8 @@ screens = [
                     other_current_screen_border=colors[6],
                     other_screen_border=colors[4],
                     foreground=colors[2],
-                    background=colors[0]
+                    background=colors[0],
+                    visible_groups=screen1_groups
                 ),
                 widget.Sep(
                     linewidth=0,
@@ -389,8 +438,8 @@ screens = [
                     other_current_screen_border=colors[6],
                     other_screen_border=colors[4],
                     foreground=colors[2],
-                    background=colors[0]
-                ),
+                    background=colors[0],
+                    visible_groups=screen2_groups),
                 widget.Sep(
                     linewidth=0,
                     padding=6,
@@ -450,7 +499,7 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
-#follow_mouse_focus = True
+# follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
@@ -462,8 +511,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
-    Match(title='Steam'),
-    Match(title='Friends List'),
+    # Match(title='Steam'),
+    # Match(title='Friends List'),
     Match(title='Virtual Machine Manager')
 ])
 auto_fullscreen = True
@@ -475,7 +524,7 @@ reconfigure_screens = True
 auto_minimize = True
 
 
-@hook.subscribe.startup_once
+@ hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
