@@ -171,9 +171,10 @@ keys = [
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
-    Key([mod, 'control'], 'l', lazy.spawn('gnome-screensaver-command -l')),
+    Key([mod, 'control'], 'l', lazy.spawn('light-locker-command -l')),
     Key([mod, 'shift', 'control'], 'q', lazy.spawn(
-        'gnome-session-quit --power-off')),
+        'systemctl poweroff')),
+    Key([mod, 'control'], 's', lazy.spawn('systemctl suspend'))
 ]
 
 
@@ -183,10 +184,13 @@ def init_group_names():
             'layout': 'monadtall',
             'matches': [Match(wm_class=("Navigator", "firefox"))]
         }),
-        ("DEV", {'layout': 'monadtall'}),
+        ("DEV", {'layout': 'monadwide'}),
         ("SYS", {'layout': 'monadtall'}),
         ("DOC", {'layout': 'monadtall'}),
-        ("VMM", {'layout': 'max'}),
+        ("VMM", {
+            'layout': 'max',
+            'matches': [Match(wm_class=("virt-manager", "Virt-manager"))]
+            }),
         ("GAME", {
             'layout': 'max',
             'matches': [Match(wm_class=("csgo_linux64", "csgo_linux64"))]
@@ -274,7 +278,7 @@ layouts = [
     # layout.Bsp(),
     # layout.Matrix(),
     layout.MonadTall(),
-    # layout.MonadWide(),
+    layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
