@@ -155,12 +155,12 @@ keys = [
     # Toggle between split and unsplit sides of stack.
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod, "shift"], "Return",
-        lazy.spawn("dmenu_run -p 'Run: '"),
+        lazy.spawn("rofi -show drun"),
         desc='Run Launcher'
         ),
     Key([mod], "b",
         lazy.spawn(myBrowser),
-        desc='Qutebrowser'
+        desc='Firefox'
         ),
     Key([mod, "shift"], "c",
         lazy.window.kill(),
@@ -224,27 +224,27 @@ if __name__ in ["config", "__main__"]:
     group_names = init_group_names()
     groups = init_groups()
 
-# for j, names in enumerate([screen1_groups, screen2_groups]):
-#     keys.extend(Key([mod], i, lazy.to_screen(
-#         j), lazy.group[i].toscreen()) for i in names)
+ for j, names in enumerate([screen1_groups, screen2_groups]):
+     keys.extend(Key([mod], i, lazy.to_screen(
+         j), lazy.group[i].toscreen()) for i in names)
 
 
-for i, (name, kwargs) in enumerate(group_names, 1):
-    if name in screen1_groups and name not in screen2_groups:
-        keys.append(Key([mod], str(i), lazy.to_screen(0),
-                    lazy.group[name].toscreen(toggle=False)))
-    elif name in screen2_groups and name not in screen1_groups:
-        keys.append(Key([mod], str(i), lazy.to_screen(1),
-                    lazy.group[name].toscreen(toggle=False)))
-    else:
-        keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+#for i, (name, kwargs) in enumerate(group_names, 1):
+#    if name in screen1_groups and name not in screen2_groups:
+#        keys.append(Key([mod], str(i), lazy.to_screen(0),
+#                    lazy.group[name].toscreen(toggle=False)))
+#    elif name in screen2_groups and name not in screen1_groups:
+#     keys.append(Key([mod], str(i), lazy.to_screen(1),
+#                   lazy.group[name].toscreen(toggle=False)))
+#   else:
+#       keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
 
-for i, (name, kwargs) in enumerate(group_names, 1):
-    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
+#for i, (name, kwargs) in enumerate(group_names, 1):
+#    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
-# for i, (name, kwargs) in enumerate(group_names, 1):
-#     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
-#     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+ for i, (name, kwargs) in enumerate(group_names, 1):
+     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
+     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
 
 # groups = [Group(i) for i in "123456789"]
 
@@ -517,7 +517,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='pinentry'),  # GPG key password entry
     # Match(title='Steam'),
     # Match(title='Friends List'),
-    Match(title='Virtual Machine Manager')
+    Match(title='Virtual Machine Manager'),
+    Match(wm_class="org.gnome.Nautilus")
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
