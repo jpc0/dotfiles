@@ -5,6 +5,7 @@ noremap <Right> <Nop>
 set clipboard+=unnamedplus
 
 syntax on
+set number
 set relativenumber
 set expandtab
 set tabstop=4 shiftwidth=4
