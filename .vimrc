@@ -2,7 +2,6 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-set clipboard+=unnamedplus
 
 syntax on
 set number
@@ -13,6 +12,8 @@ set smarttab
 set autoindent
 set ignorecase
 set smartcase
+set autochdir
+set autowrite
 execute pathogen#infect()
 
 filetype plugin indent on
