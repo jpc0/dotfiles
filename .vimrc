@@ -46,8 +46,9 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin('~/.vim/bundle')
 Plug 'Valloric/YouCompleteMe'  
 Plug 'morhetz/gruvbox'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'roxma/vim-tmux-clipboard'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
 set background=dark
