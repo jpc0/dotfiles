@@ -100,3 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 eval "$(starship init zsh)"
+alias ssh="TERM=xterm ssh"
+alias devel="cd ~/devel/git"
+alias resolve="progl /opt/resolve/bin/resolve &"
+alias vim=nvim
