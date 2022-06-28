@@ -51,6 +51,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'roxma/vim-tmux-clipboard'
 call plug#end()
 
-set background=dark
 colorscheme gruvbox
-let g:grvbox_contrast_dark='default'
+highlight Normal guibg=none
+
+let mapleader = " "
