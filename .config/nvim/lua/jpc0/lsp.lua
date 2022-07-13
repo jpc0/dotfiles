@@ -10,7 +10,11 @@ local attach = function()
 		vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer = 0})
 end
 
-require('lspconfig').jedi_language_server.setup{
+-- require('lspconfig').jedi_language_server.setup{
+--	on_attach = attach,
+--	capabilities = capabilities
+--}
+require('lspconfig').pyright.setup {
 	on_attach = attach,
 	capabilities = capabilities
 }

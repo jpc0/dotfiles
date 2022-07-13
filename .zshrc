@@ -108,5 +108,6 @@ fi
 eval "$(starship init zsh)"
 alias ssh="TERM=xterm ssh"
 alias devel="cd ~/devel/git"
+alias devel.work="cd ~/devel/git/work"
 alias resolve="progl /opt/resolve/bin/resolve &"
 alias vim=nvim
