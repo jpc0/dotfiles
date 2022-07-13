@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
 	use "wbthomason/packer.nvim"
 	use "nvim-lua/plenary.nvim"
 	use "folke/tokyonight.nvim"
+	use "neovim/nvim-lspconfig"
 
 
 	-- Automatically set up your config after cloning packer.nvim
