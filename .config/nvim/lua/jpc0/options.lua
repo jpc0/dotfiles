@@ -23,5 +23,8 @@ vim.opt.colorcolumn = "80"
 vim.opt.signcolumn = "yes"
 vim.opt.cmdheight = 2
 vim.opt.updatetime = 50
-vim.opt.completeopt = {"menuone", "menu", "noselect"}
 vim.opt.clipboard = "unnamedplus"
+
+-- CMP stuff
+vim.opt.completeopt = {"menuone", "menu", "noselect"}
+

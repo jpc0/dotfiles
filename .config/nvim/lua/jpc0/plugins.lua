@@ -35,9 +35,22 @@ return require('packer').startup(function(use)
 	-- My Plugins Here
 	use "wbthomason/packer.nvim"
 	use "nvim-lua/plenary.nvim"
+	
+	-- Colorscheme
 	use "folke/tokyonight.nvim"
+	
+	-- LSP
 	use "neovim/nvim-lspconfig"
-
+	
+	-- CMP
+	use "hrsh7th/cmp-nvim-lsp"
+	use "hrsh7th/cmp-path"
+	use "hrsh7th/cmp-buffer"
+	use "hrsh7th/nvim-cmp"
+	
+	-- Snippets
+	use "L3MON4D3/LuaSnip"
+	use "saadparwaiz1/cmp_luasnip"
 
 	-- Automatically set up your config after cloning packer.nvim
 	-- Put this at the end of all plugins
