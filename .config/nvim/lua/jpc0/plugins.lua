@@ -35,6 +35,9 @@ return packer.startup(function(use)
 	-- My Plugins Here
 	use "wbthomason/packer.nvim"
 	use "nvim-lua/plenary.nvim"
+	use "nvim-lua/popup.nvim"
+	-- Telescope
+	use "nvim-telescope/telescope.nvim"
 	-- Colorscheme
 	use "folke/tokyonight.nvim"
 	-- LSP

@@ -1,5 +1,9 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/bin/clion-2022.1/bin:/usr/local/bin:~/.dotnet/tools:$PATH:/usr/local/go/bin
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin/clion-2022.1/bin$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.dotnet/tools:$PATH
+export PATH=$PATH:/usr/local/go/bin:`/usr/local/go/bin/go env GOPATH`/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/jpc0/.oh-my-zsh"
