@@ -37,6 +37,7 @@ return packer.startup(function(use)
 	use "nvim-lua/plenary.nvim"
 	use "nvim-lua/popup.nvim"
 	-- Telescope
+	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use "nvim-telescope/telescope.nvim"
 	-- Colorscheme
 	use "folke/tokyonight.nvim"
