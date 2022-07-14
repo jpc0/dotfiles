@@ -80,6 +80,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+setopt autocd
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -109,5 +112,8 @@ eval "$(starship init zsh)"
 alias ssh="TERM=xterm ssh"
 alias devel="cd ~/devel/git"
 alias devel.work="cd ~/devel/git/work"
+alias dotfiles="cd ~/devel/git/dotfiles"
+alias ..="cd .."
+alias .="ls -lA"
 alias resolve="progl /opt/resolve/bin/resolve &"
 alias vim=nvim
