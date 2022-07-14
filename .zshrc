@@ -6,7 +6,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 export PATH=$PATH:/usr/local/go/bin:`/usr/local/go/bin/go env GOPATH`/bin
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jpc0/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
