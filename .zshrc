@@ -114,6 +114,6 @@ alias devel="cd ~/devel/git"
 alias devel.work="cd ~/devel/git/work"
 alias dotfiles="cd ~/devel/git/dotfiles"
 alias ..="cd .."
-alias .="ls -lA"
+alias .="ls -lAh"
 alias resolve="progl /opt/resolve/bin/resolve &"
 alias vim=nvim

@@ -23,6 +23,10 @@ require('lspconfig').pyright.setup {
 	on_attach = attach,
 	capabilities = capabilities
 }
+require('lspconfig').tsserver.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
 require('lspconfig').clangd.setup{
 	on_attach = attach,
 	capabilities = capabilities
