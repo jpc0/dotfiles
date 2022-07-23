@@ -14,6 +14,11 @@ end
 --	on_attach = attach,
 --	capabilities = capabilities
 --}
+
+require('lspconfig').hls.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
 require('lspconfig').pyright.setup {
 	on_attach = attach,
 	capabilities = capabilities
