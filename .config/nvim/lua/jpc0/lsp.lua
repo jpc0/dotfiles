@@ -10,12 +10,28 @@ local attach = function()
 		vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer = 0})
 end
 
--- require('lspconfig').jedi_language_server.setup{
---	on_attach = attach,
---	capabilities = capabilities
---}
-
 require('lspconfig').hls.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
+require('lspconfig').tailwindcss.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
+require('lspconfig').tsserver.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
+require('lspconfig').emmet_ls.setup {
+	on_attach = attach,
+	capabilities = capabilities,
+	filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+}
+require('lspconfig').cssls.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
+require('lspconfig').jsonls.setup {
 	on_attach = attach,
 	capabilities = capabilities
 }
