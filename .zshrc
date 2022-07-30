@@ -82,7 +82,6 @@ source $ZSH/oh-my-zsh.sh
 
 setopt autocd
 
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
