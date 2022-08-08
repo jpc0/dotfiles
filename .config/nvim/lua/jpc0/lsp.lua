@@ -10,6 +10,14 @@ local attach = function()
 		vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {buffer = 0})
 end
 
+require('lspconfig').rust_analyzer.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
+require('lspconfig').dockerls.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
 require('lspconfig').hls.setup {
 	on_attach = attach,
 	capabilities = capabilities
