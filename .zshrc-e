@@ -82,6 +82,7 @@ source $ZSH/oh-my-zsh.sh
 
 setopt autocd
 
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -113,8 +114,6 @@ alias devel="cd ~/devel/git"
 alias devel.work="cd ~/devel/git/work"
 alias dotfiles="cd ~/devel/git/dotfiles"
 alias ..="cd .."
-alias .="ls -lAh"
+alias .="ls -lA"
 alias resolve="progl /opt/resolve/bin/resolve &"
 alias vim=nvim
-
-[ -f "/Users/jean-pierrecoetzee/.ghcup/env" ] && source "/Users/jean-pierrecoetzee/.ghcup/env" # ghcup-env
