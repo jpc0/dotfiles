@@ -47,6 +47,9 @@ require("formatter").setup {
       -- "lua" filetype
       require("formatter.filetypes.rust").rustfmt,
     },
+	json = {
+		require("formatter.filetypes.json").prettier,
+	},
 
     -- Use the special "*" filetype for defining formatter configurations on
     -- any filetype
