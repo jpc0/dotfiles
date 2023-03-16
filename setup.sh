@@ -49,6 +49,9 @@ sudo ln -s /usr/local/bin/bazelisk /usr/local/bin/bazel
 curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 
+# protobuf
+sudo apt-get install protobuf-compiler
+
 # Language Servers
 
 # Emmet
