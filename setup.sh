@@ -32,7 +32,7 @@ ln -s $HOME/git/dotfiles/.config/nvim $HOME/.config/nvim
 mkdir -p $HOME/devel/git/work
 mkdir -p $HOME/bin
 
-cp update-nvim.sh $HOME/bin/update-nvim
+cp $HOME/git/dotfiles/update-nvim.sh $HOME/bin/update-nvim
 
 # Setup dev tools
 
