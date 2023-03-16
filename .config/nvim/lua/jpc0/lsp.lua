@@ -1,4 +1,4 @@
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 local attach = function()
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
@@ -63,7 +63,7 @@ require("lspconfig").gopls.setup{
 	on_attach = attach,
 	capabilities = capabilities
 }
-require("lspconfig").sumneko_lua.setup{
+require("lspconfig").lua_lsp.setup{
 	settings = {
 		Lua = {
 			runtime = {
