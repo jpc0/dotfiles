@@ -37,6 +37,8 @@ return packer.startup(function(use)
 	use "nvim-lua/plenary.nvim"
 	use "nvim-lua/popup.nvim"
 	use "mhartington/formatter.nvim"
+	use "google/vim-maktaba"
+	use "bazelbuild/vim-bazel" 
 	-- Telescope
 	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use "nvim-telescope/telescope.nvim"
