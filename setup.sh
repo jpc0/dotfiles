@@ -52,6 +52,10 @@ sudo apt-get install -y nodejs
 # protobuf
 sudo apt-get install protobuf-compiler
 
+# GDB
+
+sudo apt install gdb
+
 # Language Servers
 
 # Emmet
