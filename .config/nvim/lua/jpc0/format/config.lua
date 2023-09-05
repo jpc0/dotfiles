@@ -50,6 +50,15 @@ require("formatter").setup {
 	json = {
 		require("formatter.filetypes.json").prettier,
 	},
+	cpp = {
+		require("formatter.filetypes.cpp").clangformat,
+	},
+	c = {
+		require("formatter.filetypes.c").clangformat,
+	},
+	cmake = {
+		require("formatter.filetypes.cmake").cmakeformat,
+	},
 
     -- Use the special "*" filetype for defining formatter configurations on
     -- any filetype

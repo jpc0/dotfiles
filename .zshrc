@@ -1,13 +1,16 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin/vcpkg:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin/clion-2022.1/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.dotnet/tools:$PATH
-export PATH=$PATH:/usr/local/go/bin:`/usr/local/go/bin/go env GOPATH`/bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:`go env GOPATH`/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export VCPKG_ROOT=$HOME/bin/vcpkg
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -80,6 +83,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+fpath+=$HOME/.zfunc
 
 setopt autocd
 
@@ -116,6 +120,7 @@ alias dotfiles="cd ~/devel/git/dotfiles"
 alias ..="cd .."
 alias .="ls -lAh"
 alias resolve="progl /opt/resolve/bin/resolve &"
-alias vim=nvim
+alias vim="nvim"
+alias docker="podman"
 
 [ -f "/Users/jean-pierrecoetzee/.ghcup/env" ] && source "/Users/jean-pierrecoetzee/.ghcup/env" # ghcup-env

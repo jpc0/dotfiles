@@ -2,8 +2,16 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protoc
 local attach = function()
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
+		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {buffer = 0})
 		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {buffer = 0})
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {buffer = 0})
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, {buffer = 0})
+		vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+		vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+		vim.keymap.set('n', '<leader>wl', function()
+			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+		end, bufopts)
+		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, {buffer = 0})
 		vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
 		vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {buffer = 0})
@@ -57,13 +65,29 @@ require('lspconfig').cssls.setup {
 	on_attach = attach,
 	capabilities = capabilities
 }
-require('lspconfig').jsonls.setup {
-	on_attach = attach,
-	capabilities = capabilities
+
+require('lspconfig').ruff_lsp.setup {
+	on_attach = function(client, bufnr)
+		attach()
+		client.server_capabilities.hoverProvider = false
+	end,
+	capabilities = capabilities,
+	init_options = {
+    settings = {
+      -- Any extra CLI arguments for `ruff` go here.
+      args = {"--ignore E501"},
+    }
+  }
 }
 require('lspconfig').pyright.setup {
 	on_attach = attach,
-	capabilities = capabilities
+	capabilities = capabilities,
+    settings = {
+ 		python = {
+ 			reportMatchNotExhaustive = "error",
+ 			reportImportCycles = "error",
+		}
+   }
 }
 require('lspconfig').tsserver.setup {
 	on_attach = attach,
@@ -102,4 +126,12 @@ require'lspconfig'.lua_ls.setup {
       },
     },
   },
+}
+require'lspconfig'.sqlls.setup {
+	on_attach = attach,
+	capabilities = capabilities
+}
+require'lspconfig'.gopls.setup{
+	on_attach = attach,
+	capabilities = capabilities
 }

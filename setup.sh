@@ -68,11 +68,16 @@ sudo npm install -g @tailwindcss/language-server
 sudo npm install -g typescript typescript-language-server
 # CSS and JSON
 sudo npm install -g vscode-langservers-extracted
+# sql
+sudo npm install -g sql-lanuage-server
 # C/C++
 sudo apt install clangd -y
+sudo apt install clang-format -y
 # CMAKE
 pip install cmake-language-server
+sudo apt install cmake-format -y
 # Python
+pip install jedi-language-server
 pip install pyright
 # Lua
 mkdir -p $HOME/bin/lua-language-server-data

@@ -7,3 +7,4 @@ vim.keymap.set("n", "<leader>tgr", "<cmd>Telescope live_grep<cr>", {remap = fals
 
 -- Formatter
 vim.keymap.set("n", "<leader>f", "<cmd>Format<cr>", {remap = false})
+vim.keymap.set("n", "<leader>fl", "<cmd>:lua vim.lsp.buf.format()<cr>", {remap = false})
