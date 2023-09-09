@@ -16,7 +16,7 @@ cd $HOME/Downloads
 # Setup Neovim
 sudo zypper install ninja gettext libtool cmake gcc-c++ pkg-config unzip curl
 cd $HOME/git
-git clone https://github.com/neovim/neovim -b release-0.8
+git clone https://github.com/neovim/neovim -b release-0.9 --depth 1
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
@@ -84,6 +84,7 @@ pipx install cmake-format --include-deps
 # Python
 pipx install jedi-language-server
 pipx install pyright
+pipx install ruff-lsp
 # Lua
 mkdir -p $HOME/bin/lua-language-server-data
 cd $HOME/bin/lua-language-server-data
@@ -102,6 +103,16 @@ chmod +x ~/.local/bin/rust-analyzer
 
 # Formatters
 
+pipx install black
+
 # Prettier
 
 sudo npm install -g prettier
+
+# Linters
+
+pipx install ruff
+
+# Tools
+
+sudo zypper install Bear

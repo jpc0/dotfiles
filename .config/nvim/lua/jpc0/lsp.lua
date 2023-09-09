@@ -74,7 +74,6 @@ require('lspconfig').ruff_lsp.setup {
 	capabilities = capabilities,
 	init_options = {
     settings = {
-      -- Any extra CLI arguments for `ruff` go here.
       args = {"--ignore E501"},
     }
   }
