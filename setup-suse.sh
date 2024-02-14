@@ -2,9 +2,10 @@
 
 set -xe
 
-sudo zypper update
-sudo zypper install -t pattern devel_basis
-sudo zypper install tmux  cmake ninja zsh python311-pipx
+sudo zypper update -y
+sudo zypper -n install -t pattern devel_basis
+sudo zypper install -y tmux  cmake ninja zsh 
+pip install --user pipx
 
 # Setup shell
 curl -sS https://starship.rs/install.sh | sh
@@ -14,7 +15,7 @@ mkdir -p $HOME/Downloads
 cd $HOME/Downloads
 
 # Setup Neovim
-sudo zypper install ninja gettext libtool cmake gcc-c++ pkg-config unzip curl
+sudo zypper install -y ninja gettext libtool cmake gcc-c++ pkg-config unzip curl
 cd $HOME/git
 git clone https://github.com/neovim/neovim -b release-0.9 --depth 1
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -47,13 +48,13 @@ sudo chmod +x /usr/local/bin/bazelisk
 sudo ln -s /usr/local/bin/bazelisk /usr/local/bin/bazel
 
 # Node
-sudo zypper install nodejs
+sudo zypper install -y nodejs
 
 # protobuf
-sudo zypper install protobuf-devel
+sudo zypper install -y protobuf-devel
 
 # GDB
-sudo zypper install gdb
+sudo zypper install -y gdb
 
 # GF
 cd $HOME/git
@@ -77,7 +78,7 @@ sudo npm install -g vscode-langservers-extracted
 # sql
 sudo npm install -g sql-lanuage-server
 # C/C++
-sudo zypper install clang
+sudo zypper install -y clang
 # CMAKE
 pipx install cmake-language-server
 pipx install cmake-format --include-deps
@@ -115,4 +116,4 @@ pipx install ruff
 
 # Tools
 
-sudo zypper install Bear
+sudo zypper install -y Bear
