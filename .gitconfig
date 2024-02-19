@@ -1,7 +1,7 @@
 [user]
 	name = Jean-Pierre Coetzee
 	email = jeanpierrec19@gmail.com
-	signingkey = ~\\.ssh\\id_rsa.pub
+	signingkey = ~/.ssh/id_rsa.pub
 [gpg]
 	format = ssh
 [commit]
