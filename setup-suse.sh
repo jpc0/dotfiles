@@ -1,10 +1,10 @@
 #!/bin/sh
 
-set -xe
+set -x
 
-sudo zypper update
-sudo zypper install -t pattern devel_basis
-sudo zypper install tmux  cmake ninja zsh python311-pipx
+sudo zypper update -y
+sudo zypper install -y -t pattern devel_basis
+sudo zypper install -y tmux  cmake ninja zsh python311-pipx libX11-devel
 
 # Setup shell
 curl -sS https://starship.rs/install.sh | sh
@@ -14,7 +14,7 @@ mkdir -p $HOME/Downloads
 cd $HOME/Downloads
 
 # Setup Neovim
-sudo zypper install ninja gettext libtool cmake gcc-c++ pkg-config unzip curl
+sudo zypper install -y ninja gettext libtool cmake gcc-c++ pkg-config unzip curl
 cd $HOME/git
 git clone https://github.com/neovim/neovim -b release-0.9 --depth 1
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
@@ -47,13 +47,13 @@ sudo chmod +x /usr/local/bin/bazelisk
 sudo ln -s /usr/local/bin/bazelisk /usr/local/bin/bazel
 
 # Node
-sudo zypper install nodejs
+sudo zypper install -y nodejs
 
 # protobuf
-sudo zypper install protobuf-devel
+sudo zypper install -y protobuf-devel
 
 # GDB
-sudo zypper install gdb
+sudo zypper install -y gdb
 
 # GF
 cd $HOME/git
@@ -77,7 +77,7 @@ sudo npm install -g vscode-langservers-extracted
 # sql
 sudo npm install -g sql-lanuage-server
 # C/C++
-sudo zypper install clang
+sudo zypper install -y clang
 # CMAKE
 pipx install cmake-language-server
 pipx install cmake-format --include-deps
@@ -91,8 +91,8 @@ cd $HOME/bin/lua-language-server-data
 wget https://github.com/LuaLS/lua-language-server/releases/download/3.6.17/lua-language-server-3.6.17-linux-x64.tar.gz -O - | tar -xz
 cd $HOME/bin
 touch lua-language-server
-echo "#!/bin/bash" > lua-language-server
-echo "exec \"$HOME/bin/lua-language-server-data/bin/lua-language-server\" \"$@\"" >> lua-language-server
+echo '#!/bin/bash' > lua-language-server
+echo 'exec "$HOME/bin/lua-language-server-data/bin/lua-language-server" "$@"' >> lua-language-server
 chmod +x lua-language-server
 
 # Rust
@@ -115,4 +115,4 @@ pipx install ruff
 
 # Tools
 
-sudo zypper install Bear
+sudo zypper install -y Bear
