@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -xe
+set -x
 
 sudo apt update && sudo apt upgrade -y
 sudo apt install tmux build-essential cmake ninja-build zsh python3-pip -y
@@ -14,9 +14,10 @@ cd $HOME/Downloads
 
 # Setup Neovim
 sudo apt-get install ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl -y
+mkdir -p $HOME/Downloads
 cd $HOME/git
-git clone https://github.com/neovim/neovim -b release-0.8
-cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
+git clone https://github.com/neovim/neovim -b release-0.10 --depth=1
+cd neovim && make CMAKE_BUILD_TYPE=Release
 sudo make install
 
 # Setup Config
@@ -50,11 +51,11 @@ curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 
 # protobuf
-sudo apt-get install protobuf-compiler
+sudo apt-get install -y protobuf-compiler
 
 # GDB
 
-sudo apt install gdb
+sudo apt install -y gdb
 
 # Language Servers
 
