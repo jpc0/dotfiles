@@ -3,7 +3,7 @@
 set -x
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install tmux build-essential cmake ninja-build zsh python3-pip -y
+sudo apt install tmux build-essential cmake ninja-build zsh python3-pip npm pipx -y
 
 # Setup shell
 curl -sS https://starship.rs/install.sh | sh
@@ -27,6 +27,7 @@ ln -s $HOME/git/dotfiles/.vimrc $HOME/.vimrc
 rm $HOME/.zshrc
 ln -s $HOME/git/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/git/dotfiles/.zshrc-e $HOME/.zshrc-e
+ln -s $HOME/git/dotfiles/.npmrc $HOME/.npmrc
 mkdir -p $HOME/.config
 ln -s $HOME/git/dotfiles/.config/nvim $HOME/.config/nvim
 
@@ -60,37 +61,37 @@ sudo apt install -y gdb
 # Language Servers
 
 # Emmet
-sudo npm install -g emmet-ls
+npm install -g emmet-ls
 # Docker
-sudo npm install -g dockerfile-language-server-nodejs
+npm install -g dockerfile-language-server-nodejs
 # Tailwind
-sudo npm install -g @tailwindcss/language-server
+npm install -g @tailwindcss/language-server
 # Typescript
-sudo npm install -g typescript typescript-language-server
+npm install -g typescript typescript-language-server
 # CSS and JSON
-sudo npm install -g vscode-langservers-extracted
+npm install -g vscode-langservers-extracted
 # sql
-sudo npm install -g sql-lanuage-server
+npm install -g sql-language-server
 # C/C++
 sudo apt install clangd -y
 sudo apt install clang-format -y
 # CMAKE
-pip install cmake-language-server
+pipx install cmake-language-server
 sudo apt install cmake-format -y
 # Python
-pip install jedi-language-server
-pip install pyright
+pipx install jedi-language-server
+pipx install pyright
 # Lua
-mkdir -p $HOME/bin/lua-language-server-data
-cd $HOME/bin/lua-language-server-data
+mkdir -p $HOME/.local/bin/lua-language-server-data
+cd $HOME/.local/bin/lua-language-server-data
 wget https://github.com/LuaLS/lua-language-server/releases/download/3.6.17/lua-language-server-3.6.17-linux-x64.tar.gz -O - | tar -xz
-cd $HOME/bin
+mkdir -p ~/.local/bin
+cd $HOME/.local/bin
 touch lua-language-server
-echo "#!/bin/bash" > lua-language-server
-echo "exec \"$HOME/bin/lua-language-server-data/bin/lua-language-server\" \"$@\"" >> lua-language-server
+echo '#!/bin/bash' > lua-language-server
+echo "exec \"$HOME/.local/bin/lua-language-server-data/bin/lua-language-server\" \"$@\"" >> lua-language-server
 chmod +x lua-language-server
 # Rust
-mkdir -p ~/.local/bin
 curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
 chmod +x ~/.local/bin/rust-analyzer
 
@@ -99,4 +100,4 @@ chmod +x ~/.local/bin/rust-analyzer
 
 # Prettier
 
-sudo npm install -g prettier
+npm install -g prettier
