@@ -82,6 +82,7 @@ sudo apt install cmake-format -y
 pipx install jedi-language-server
 pipx install pyright
 pipx install ruff-lsp
+pipx install black
 # Lua
 mkdir -p $HOME/.local/bin/lua-language-server-data
 cd $HOME/.local/bin/lua-language-server-data
