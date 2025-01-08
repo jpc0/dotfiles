@@ -1,9 +1,2 @@
-require("jpc0.keymaps")
-require("jpc0.options")
-require("jpc0.plugins")
-require("jpc0.colorscheme")
-require("jpc0.telescope")
-require("jpc0.cmp")
-require("jpc0.lsp")
-require("jpc0.telescope")
-require("jpc0.format")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
