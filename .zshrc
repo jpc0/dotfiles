@@ -7,10 +7,12 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.dotnet/tools:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:`go env GOPATH`/bin
+export PATH=$HOME/.local/share/swiftly/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export VCPKG_ROOT=$HOME/bin/vcpkg
+export VCPKG_ROOT=$HOME/git/vcpkg
+export PATH=$VCPKG_ROOT:$PATH
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -124,3 +126,18 @@ alias vim="nvim"
 alias docker="podman"
 
 [ -f "/Users/jean-pierrecoetzee/.ghcup/env" ] && source "/Users/jean-pierrecoetzee/.ghcup/env" # ghcup-env
+
+# fnm
+FNM_PATH="/home/jpc0/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/jpc0/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+
+# TypeSpec
+TYPESPEC_PATH="/home/jpc0/.tsp/bin"
+if [ -d "$TYPESPEC_PATH" ]; then
+  export PATH="/home/jpc0/.tsp/bin:$PATH"
+fi
+
+export CPM_SOURCE_CACHE=$HOME/.cache/CPM

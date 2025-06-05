@@ -15,6 +15,8 @@ vim.g.have_nerd_font = true
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -118,6 +120,19 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+-- Create a dedicated autocommand group to avoid duplicates
+local cppModulesGroup = vim.api.nvim_create_augroup('FileTypeCppModules', { clear = true })
+
+-- Add autocommands for .ixx files
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
+  group = cppModulesGroup,
+  pattern = { '*.ixx', '*.cppm' }, -- Add *.cppm too if you use it
+  callback = function()
+    vim.bo.filetype = 'cpp' -- Set buffer-local filetype to 'cpp'
+  end,
+  desc = 'Set filetype to cpp for C++ module interface files',
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -400,6 +415,18 @@ require('lazy').setup({
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
+      local lspconfig = require 'lspconfig'
+      lspconfig.sourcekit.setup {
+        filetypes = { 'swift' },
+        capabilities = {
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = true,
+            },
+          },
+        },
+      }
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -550,7 +577,9 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        clangd = {},
+        clangd = {
+          filetypes = { 'c', 'cpp', 'cppm', 'ixx', 'objc', 'objcpp', 'cuda', 'proto' },
+        },
         gopls = {},
         pyright = {},
         rust_analyzer = {},
@@ -635,7 +664,7 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = { c = true, cpp = true, cmake = true }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           lsp_format_opt = 'never'
